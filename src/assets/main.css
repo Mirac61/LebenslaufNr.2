@@ -1,10 +1,25 @@
 @import './base.css';
 
+:root {
+  --background: #11111b;
+  --body: #181825;
+  --text-color: #cdd6f4;
+  --detail: #cba6f7;
+  --hover: #b4befe;
+  --accent: rgb(198, 160, 246);
+}
+
 #app {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
   font-weight: normal;
+}
+
+body {
+  margin: 0;
+  background: var(--body);
+  color: var(--text-color);
 }
 
 a,
@@ -33,3 +48,4 @@ a,
     padding: 0 2rem;
   }
 }
+
