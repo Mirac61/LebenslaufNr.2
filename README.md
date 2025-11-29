@@ -1,5 +1,5 @@
-- [ ] Vue reschaschieren
-- [ ] Vue richtig einrichten
+- [X] Vue reschaschieren
+- [X] Vue richtig einrichten
 - [ ] TypeScript Syntax lernen
 - [ ] Lebenlsauf basis erstellen
 - [ ] Vue vorhergesehen benutzen
