@@ -3,35 +3,44 @@
 </script>
 
 <template>
-  <nav class="nav">
-    <div class="nav-innen">
-      <div class="nav-name">
-        Mirac Sancak
+  <nav class="navbar">
+    <div class="navbar-innen">
+      <div class="navbar-name">
+        <li><a>Mirac Sancak</a></li>
       </div>
 
-      <ul class="nav-links">
+      <ul class="navbar-links">
         <li><a href="#home">Home</a></li>
-        <li><a href="#bildung">Bildung</a></li>
-        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projekte">Projekte</a></li>
+        <li><a href="#faehigkeiten">Fähigkeiten</a></li>
+        <li><a href="#werdegang">Werdegang</a></li>
         <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#lebenslauf">Lebenslauf</a></li>
       </ul>
     </div>
   </nav>
 </template>
 
 <style scoped>
-.nav {
+.navbar {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
+  max-width: 98%;
+  width: 96%;
+
+  top: 10px;
   height: 70px;
-  background: var(--background);
+  left: 0;
+  right: 0;
+
+  margin: 0 auto;
+  justify-content: center;
+  background: var(--glas-bg);
   display: flex;
   align-items: center;
+  border-radius: 25px;
 }
 
-.nav-innen {
+.navbar-innen {
   width: 100%;
   padding: 0 24px;
   display: flex;
@@ -39,51 +48,48 @@
   align-items: center;
 }
 
-.nav-name {
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--text-color);
-  letter-spacing: 0.5px;
-}
-
-.nav-links {
+.navbar-links {
   list-style: none;
   display: flex;
   gap: 32px;
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
+  text-align: ce;
 }
 
-.nav-links a {
-  display: inline;
+.navbar-links a {
+  display: inline-block; /* wichtig für transform */
   color: var(--text-color);
   font-size: 16px;
   text-decoration: none;
+  font-family: var(--font);
   border: none;
-  transition: color 0.2s ease;
   background: none !important;
   box-shadow: none !important;
   padding: 0 !important;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease; /* transform mit-animieren */
 }
 
-.nav-links a:hover {
+.navbar-links a:hover {
   color: var(--detail);
+  transform: translateY(-1px);
 }
 
-.nav-links a.active {
+.navbar-links a.active {
   color: var(--detail);
 }
 
 @media (max-width: 800px) {
-  .nav-links {
+  .navbar-links {
     gap: 18px;
   }
 }
 
 @media (max-width: 600px) {
-  .nav-links {
+  .navbar-links {
     display: none;
   }
 }
-
 </style>

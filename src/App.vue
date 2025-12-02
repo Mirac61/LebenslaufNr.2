@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import Header from "./components/Header.vue";
+import Starter from "./components/Start.vue";
 import Nav from "./components/Navbar.vue";
 </script>
 
 <template>
   <Nav />
-  <Header />
+  <Starter />
 </template>
 
 <style scoped>
