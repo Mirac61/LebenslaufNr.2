@@ -40,6 +40,7 @@ import linkedinLogo from "@/assets/linkedin.png";
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  font-family: var(--font);
 }
 
 .start-kicker {

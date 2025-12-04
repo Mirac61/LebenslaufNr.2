@@ -63,6 +63,7 @@
   text-decoration: none;
   font-size: 18px;
   transition: 0.2s;
+  font-family: var(--font);
 }
 
 .navbar-links a:hover {

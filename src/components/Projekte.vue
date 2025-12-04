@@ -1,19 +1,34 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeUnmount } from "vue";
-import lhell from "@/assets/LebenslaufHell.png";
-import ldunkel from "@/assets/LebenslaufDunkel.png";
+import { ref, onMounted, onUnmounted } from "vue";
 
-const bilder = [lhell, ldunkel];
-const index = ref(0);
+// Lebenslauf-Bilder
+import lebenslaufHell from "@/assets/Lebenslauf/LebenslaufHell.png";
+import lebenslaufDunkel from "@/assets/Lebenslauf/LebenslaufDunkel.png";
+
+// Zeiterfassung-Bilder (liegen unter src/assets/Lebenslauf/Zeit)
+import zeit1 from "@/assets/Zeit/ZeiterfassungEins.png";
+import zeit2 from "@/assets/Zeit/ZeiterfassungZwei.png";
+import zeit3 from "@/assets/Zeit/ZeiterfassungDrei.png";
+import zeit4 from "@/assets/Zeit/ZeiterfassungVier.png";
+
+const lebenslaufBilder = [lebenslaufHell, lebenslaufDunkel];
+const zeiterfassungBilder = [zeit1, zeit2, zeit3, zeit4];
+
+const lebenslaufIndex = ref(0);
+const zeitIndex = ref(0);
+
 let timer: number | null = null;
 
 onMounted(() => {
   timer = window.setInterval(() => {
-    index.value = (index.value + 1) % bilder.length;
+    lebenslaufIndex.value =
+      (lebenslaufIndex.value + 1) % lebenslaufBilder.length;
+
+    zeitIndex.value = (zeitIndex.value + 1) % zeiterfassungBilder.length;
   }, 5000);
 });
 
-onBeforeUnmount(() => {
+onUnmounted(() => {
   if (timer !== null) clearInterval(timer);
 });
 </script>
@@ -24,30 +39,73 @@ onBeforeUnmount(() => {
       <h2 class="sektion-titel">Projekte</h2>
 
       <div class="box-grid">
+        <!-- Linke Box: Interaktiver Lebenslauf -->
         <div class="box">
           <h3>Interaktiver Lebenslauf</h3>
 
           <div class="vorschau-wrapper">
             <Transition name="slide">
               <img
-                :key="index"
-                :src="bilder[index]"
+                :key="lebenslaufIndex"
+                :src="lebenslaufBilder[lebenslaufIndex]"
                 alt="Lebenslauf Vorschau"
                 class="vorschau"
               />
             </Transition>
           </div>
 
-          <p>HTML, CSS und JavaScript mit Fokus auf Developer-Design.</p>
-          <span class="meta">HTML · CSS · JavaScript </span>
+          <p>
+            Ein moderner, interaktiver Lebenslauf mit Fokus auf ein sauberes
+            Developer(Apple)-Design mit klarer Struktur.
+          </p>
+
+          <div class="projekt-footer">
+            <span class="tech-btn">HTML · CSS · JavaScript</span>
+
+            <a
+              href="https://github.com/Mirac61/Lebenslauf_IT/tree/main"
+              target="_blank"
+              class="github-btn"
+            >
+              <img src="@/assets/githubmark.png" alt="GitHub" />
+            </a>
+          </div>
         </div>
 
+        <!-- Rechte Box: Zeiterfassungssoftware -->
         <div class="box">
-          <h3>Autovermietung Dashboard</h3>
-          <p>JavaFX-Dashboard mit SQLite und Hibernate.</p>
-          <span class="meta">Java · Hibernate</span>
+          <h3>Zeiterfassungssystem</h3>
+
+          <div class="vorschau-wrapper">
+            <Transition name="slide">
+              <img
+                :key="zeitIndex"
+                :src="zeiterfassungBilder[zeitIndex]"
+                alt="Zeiterfassung Vorschau"
+                class="vorschau"
+              />
+            </Transition>
+          </div>
+
+          <p>
+            Eine moderne, webbasierte Zeiterfassungssoftware mit Rollen,
+            Arbeitszeitverwaltung und übersichtlichem Dashboard.
+          </p>
+
+          <div class="projekt-footer">
+            <span class="tech-btn">C# · ASP.NET Core · SQLite</span>
+
+            <a
+              href="https://github.com/DanielTrbara/Zeiterfassung"
+              target="_blank"
+              class="github-btn"
+            >
+              <img src="@/assets/githubmark.png" alt="GitHub" />
+            </a>
+          </div>
         </div>
 
+        <!-- Restliche Boxen wie gehabt -->
         <div class="box">
           <h3>Rechnung Ersteller-Tool</h3>
           <p>Tool zum Erstellen und Verwalten von Rechnungen.</p>
@@ -115,31 +173,44 @@ onBeforeUnmount(() => {
   object-fit: cover;
 }
 
-/* Slide-Transition */
-.slide-enter-active,
-.slide-leave-active {
-  transition: all 0.4s ease;
-  position: absolute;
-  inset: 0;
+/* Footer-Buttons */
+.projekt-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
 }
 
-.slide-enter-from {
-  transform: translateX(100%);
-  opacity: 0;
+.tech-btn,
+.github-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 6px 12px;
+  border-radius: 10px;
+
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+
+  font-size: 13px;
+  color: #e2e8f0;
+  text-decoration: none;
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    opacity 0.2s ease;
 }
 
-.slide-enter-to {
-  transform: translateX(0);
-  opacity: 1;
+.tech-btn:hover,
+.github-btn:hover {
+  transform: translateY(-2px);
 }
 
-.slide-leave-from {
-  transform: translateX(0);
-  opacity: 1;
-}
-
-.slide-leave-to {
-  transform: translateX(-100%);
-  opacity: 0;
+.github-btn img {
+  width: 20px;
+  height: 20px;
 }
 </style>
